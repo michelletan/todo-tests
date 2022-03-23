@@ -1,6 +1,6 @@
 # Todo MVC Tests
 
-**Test Application:** [Todo MVC](https://todomvc.com/examples/react/#/)
+**Application Under Test:** [Todo MVC](https://todomvc.com/examples/react/#/)
 
 **Objective:** Design automated test cases for the following user stories using Robot Framework:
 
@@ -14,12 +14,14 @@ Notes: Automate user actions and make sure the end result of each user action is
 ### User Story 2
 As an automation tester, I want to test the performance of the todo list.
 I need to create 20 todo lists with every test run.
-Then perform test cleanup by deleting the 20 todo lists before exitting the test run.
+Then perform test cleanup by deleting the 20 todo lists before exiting the test run.
 
 Notes: Use TestSetup and TestTearDown in the test scripts.
 
 ## Test Cases
-**Assumption**: The Active and Completed tabs are out of scope
+**Assumptions**: <br>
+- The Active and Completed tabs are out of scope
+- Handling different environments is out of scope
 
 1. Create a new todo list item
     1. On the All tab, verify that the item does not have a green tick
