@@ -24,29 +24,50 @@ Create Three Todo List items
 Mark Todo List Item As Complete
     [Documentation]    Verify that the user can mark a todo list item as complete successfully
     TodoPage.Add New Todo  ${MarkTodoTitle}
-    TodoPage.Toggle Todo Status  ${MarkTodoTitle}
+    TodoPage.Toggle Todo Complete State  ${MarkTodoTitle}
     TodoPage.Verify Todo Is Complete  ${MarkTodoTitle}
     [Teardown]    Clear Completed Todos And Verify No Todos Exist
 
-Mark Todo List Item As Incomplete
-    [Documentation]    Verify that the user can mark a todo list item as incomplete successfully
+Mark Todo List Item As Active
+    [Documentation]    Verify that the user can mark a todo list item as active successfully
     TodoPage.Add New Todo  ${MarkTodoTitle2}
-    TodoPage.Toggle Todo Status  ${MarkTodoTitle}
-    TodoPage.Verify Todo Is Complete  ${MarkTodoTitle}
-    TodoPage.Toggle Todo Status  ${MarkTodoTitle}
-    TodoPage.Verify Todo Is Active  ${MarkTodoTitle}
+    TodoPage.Toggle Todo Complete State  ${MarkTodoTitle2}
+    TodoPage.Verify Todo Is Complete  ${MarkTodoTitle2}
+    TodoPage.Toggle Todo Complete State  ${MarkTodoTitle2}
+    TodoPage.Verify Todo Is Active  ${MarkTodoTitle2}
 
-# Mark All Todo List Items As Complete
-#     [Documentation]    Verify that the user can mark all todo list items as complete successfully
-  
-# Mark All Todo List Items As Incomplete
-#     [Documentation]    Verify that the user can mark all todo list items as incomplete successfully
-  
-# Delete Active Todo List Item
-#     [Documentation]    Verify that the user can delete an active todo list item successfully
-  
-# Delete Completed Todo List Item
-#     [Documentation]    Verify that the user can delete a completed todo list item successfully
+Mark All Todo List Items As Complete
+    [Documentation]    Verify that the user can mark all todo list items as complete successfully
+    TodoPage.Add New Todo  ${MarkManyTodosCompleteTitle1}
+    TodoPage.Add New Todo  ${MarkManyTodosCompleteTitle2}
+    TodoPage.Add New Todo  ${MarkManyTodosCompleteTitle3}
+    TodoPage.Toggle Complete State For All Todos
+    TodoPage.Verify All Todos Are Complete
+    [Teardown]    Clear Completed Todos And Verify No Todos Exist
+
+Mark All Todo List Items As Active
+    [Documentation]    Verify that the user can mark all todo list items as active successfully
+    TodoPage.Add New Todo  ${MarkManyTodosActiveTitle1}
+    TodoPage.Add New Todo  ${MarkManyTodosActiveTitle2}
+    TodoPage.Add New Todo  ${MarkManyTodosActiveTitle3}
+    TodoPage.Toggle Complete State For All Todos 
+    TodoPage.Verify All Todos Are Complete
+    TodoPage.Toggle Complete State For All Todos 
+    TodoPage.Verify All Todos Are Active
+
+Delete Active Todo List Item
+    [Documentation]    Verify that the user can delete an active todo list item successfully
+    TodoPage.Add New Todo  ${DeleteTodoTitle1}
+    TodoPage.Delete Todo  ${DeleteTodoTitle1}
+    TodoPage.Verify Todo Is Not Visible  ${DeleteTodoTitle1}
+
+Delete Completed Todo List Item
+    [Documentation]    Verify that the user can delete a completed todo list item successfully
+    TodoPage.Add New Todo  ${DeleteTodoTitle2}
+    TodoPage.Toggle Todo Complete State  ${DeleteTodoTitle2}
+    TodoPage.Verify Todo Is Complete  ${DeleteTodoTitle2}
+    TodoPage.Delete Todo  ${DeleteTodoTitle2}
+    TodoPage.Verify Todo Is Not Visible  ${DeleteTodoTitle2}
 
 ** Keywords **
 Open Browser To Page
@@ -57,7 +78,7 @@ Open Browser To Page
 Clear All Todos
     ${count} =  Get Todo Count
     IF    ${count} > 0
-        Toggle Complete Status For All Todos
+        Toggle Complete State For All Todos
         Clear All Completed Todos
     END
     Verify No Todos Exist

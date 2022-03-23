@@ -22,16 +22,23 @@ Input Text For New Todo
 Submit New Todo
     Press Keys    ${InputTodo}    RETURN
 
-Mark Todo As Complete
+Toggle Todo Complete State
     [Arguments]    ${title}
     ${element} =    Get Todo Item Checkbox  ${title}
     Click Element    ${element}
 
-Toggle Complete Status For All Todos
+Toggle Complete State For All Todos
     Click Element   //label[@for = 'toggle-all']
 
 Clear All Completed Todos
     Click Element   class:clear-completed
+
+Delete Todo
+    [Arguments]    ${title}
+    ${item} =    Get Todo Item  ${title}
+    Mouse Over    ${item}
+    ${button} =    Get Todo Item Delete Button  ${title}
+    Click Element    ${button}
 
 # Verify States
 Verify Todo Is Visible
@@ -41,28 +48,31 @@ Verify Todo Is Visible
 
 Verify Todo Is Not Visible
     [Arguments]    ${title}
-    ${element} =    Get Todo Item   ${title}
-    Element Should Not Be Visible   ${element}
+    Page Should Not Contain   //div[@class = 'view' and . = '${title}']
 
 Verify Todo Is Complete
     [Arguments]    ${title}
-    ${status} =    Get Todo Complete Status   ${title}
-    Should Be Equal    ${status}    true
+    ${state} =    Get Todo Complete State   ${title}
+    Should Be Equal    ${state}    true
 
 Verify Todo Is Active
     [Arguments]    ${title}
-    ${status} =    Get Todo Complete Status   ${title}
-    Should Be Equal    ${status}    false
+    ${state} =    Get Todo Complete State   ${title}
+    Should Be Equal As Strings    ${state}    None
 
 Verify All Todos Are Complete
     ${count} =    Get Element Count     //input[@class = 'toggle' and @checked = true]
+    Should Be Equal As Integers     ${count}    0
+
+Verify All Todos Are Active
+    ${count} =    Get Element Count     //input[@class = 'toggle' and @checked = false]
     Should Be Equal As Integers     ${count}    0
 
 Verify No Todos Exist
     ${count} =    Get Todo Count
     Should Be Equal As Integers     ${count}    0
 
-# Get Elements
+# Get Functions
 Get Todo Item
     [Arguments]    ${title}
     ${element} =    Get WebElement    //div[@class = 'view' and . = '${title}']
@@ -86,8 +96,8 @@ Get Active Todo Count
     ${count} =    Get Element Count     //div[@class = 'view' and . = '${title}']/input[@class = 'toggle' and checked = false]
     [return]    ${count}
 
-Get Todo Complete Status
+Get Todo Complete State
     [Arguments]    ${title}
     ${element} =    Get Todo Item Checkbox  ${title}
-    ${status} =   Get Element Attribute    ${element}    checked
-    [return]    ${status}
+    ${state} =   Get Element Attribute    ${element}    checked
+    [return]    ${state}
