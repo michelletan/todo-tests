@@ -76,13 +76,13 @@ Open Browser To Page
     Wait Until Page Contains Element   ${INPUT TODO}
 
 Clear All Todos
-    ${count} =  Get Todo Count
+    ${count} =  TodoPage.Get Todo Count
     IF    ${count} > 0
-        Toggle Complete State For All Todos
-        Clear All Completed Todos
+        TodoPage.Toggle Complete State For All Todos
+        TodoPage.Clear All Completed Todos
     END
-    Verify No Todos Exist
+    TodoPage.Verify No Todos Exist
 
 Clear Completed Todos And Verify No Todos Exist
-    Clear All Completed Todos
-    Verify No Todos Exist
+    TodoPage.Clear All Completed Todos
+    TodoPage.Verify No Todos Exist
