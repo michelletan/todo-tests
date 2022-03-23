@@ -21,29 +21,21 @@ Notes: Use TestSetup and TestTearDown in the test scripts.
 ## Test Cases
 1. Create a new todo list item
     1. On the All tab, verify that the item does not have a green tick
-    2. On the Active tab, verify that the item is visible
-    3. On the Completed tab, verify that the item is not visible
-    4. Verify that the item count is correct
+    2. Verify that the item count is correct
 
 2. Create 5 todo list items
     1. On the All tab, verify that the items do not have green ticks
-    2. On the Active tab, verify that the items are visible
-    3. On the Completed tab, verify that the items are not visible
-    4. Verify that the item count is correct
+    2. Verify that the item count is correct
 
 3. Mark a todo list item as complete
     1. On the All tab, verify that the item has a green tick and the text is struck out
-    2. On the Active tab, verify that the item is not visible
-    3. On the Completed tab, verify that the item is visible
-    4. Verify that the item count is updated
-    5. Verify that the "Clear completed" button is visible
+    2. Verify that the item count is updated
+    3. Verify that the "Clear completed" button is visible
 
 4. Mark a todo list item as incomplete
     1. On the All tab, verify that the item does not have a green tick and the text is not struck out
-    2. On the Active tab, verify that the item is visible
-    3. On the Completed tab, verify that the item is not visible
-    4. Verify that the item count is updated
-    5. Verify that the "Clear completed" button is not visible
+    2. Verify that the item count is updated
+    3. Verify that the "Clear completed" button is not visible
 
 5. Mark all todo list items as complete
     1. Verify that all todo list items are complete
@@ -57,12 +49,8 @@ Notes: Use TestSetup and TestTearDown in the test scripts.
 
 7. Delete an active todo list item
     1. On the All tab, verify that the item is not visible
-    2. On the Active tab, verify that the item is not visible
-    3. On the Completed tab, verify that the item is not visible
 
 8. Delete a completed todo list item
     1. On the All tab, verify that the item is not visible
-    2. On the Active tab, verify that the item is not visible
-    3. On the Completed tab, verify that the item is not visible
     
 9. Performance Test - Create 20 todo list items
