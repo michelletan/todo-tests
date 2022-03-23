@@ -19,6 +19,8 @@ Then perform test cleanup by deleting the 20 todo lists before exitting the test
 Notes: Use TestSetup and TestTearDown in the test scripts.
 
 ## Test Cases
+**Assumption**: The Active and Completed tabs are out of scope
+
 1. Create a new todo list item
     1. On the All tab, verify that the item does not have a green tick
     2. Verify that the item count is correct
