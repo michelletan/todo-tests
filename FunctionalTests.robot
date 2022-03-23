@@ -1,11 +1,17 @@
 *** Settings ***
 Library    SeleniumLibrary
+Resource    ./resources/TodoPage.robot
+Variables   ./resources/TestData.py
+Test Setup    Open Browser To Page
 
 *** Variables ***
+${WEBSITE URL}      https://todomvc.com/examples/react/#/
+${BROWSER}        Headless Chrome
 
 *** Test Cases ***
 Create One Todo List item
     [Documentation]    Verify that the user can create a new todo list item successfully
+    TodoPage.Add New Todo  ${CreateTodoTitle}
 
 Create Three Todo List items
     [Documentation]    Verify that the user can create multiple todo list item successfully
@@ -27,3 +33,8 @@ Delete Active Todo List Item
   
 Delete Completed Todo List Item
     [Documentation]    Verify that the user can delete a completed todo list item successfully
+
+** Keywords **
+Open Browser To Page
+    Open Browser    ${WEBSITE URL}    ${BROWSER}
+    Title Should Be    React • TodoMVC
